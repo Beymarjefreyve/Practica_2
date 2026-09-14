@@ -5,6 +5,10 @@ terraform {
       version = ">= 6.0"
     }
   }
+  backend "gcs" {
+    bucket = "tfstate-project-3111890e-6ba4-4e0e-95f"
+    prefix = "practica-2"
+  }
 }
 
 provider "google" {
