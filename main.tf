@@ -50,3 +50,14 @@ resource "google_compute_instance" "web" {
   allow_stopping_for_update = true
 }
 
+resource "google_compute_address" "ip_estatica" {
+  name = "ip-web-estatica"
+  region = "us-central1"
+}
+
+network_interface {
+  network = "default"
+  access_config {
+    nat_ip = google_compute_address.ip_estatica.address
+  }
+}
