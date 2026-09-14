@@ -43,7 +43,9 @@ resource "google_compute_instance" "web" {
 
   network_interface {
     network = "default"
-    access_config {}
+    access_config {
+      nat_ip = google_compute_address.ip_estatica.address
+    }
   }
 
   metadata_startup_script = file("arranque.sh")
@@ -53,11 +55,4 @@ resource "google_compute_instance" "web" {
 resource "google_compute_address" "ip_estatica" {
   name = "ip-web-estatica"
   region = "us-central1"
-}
-
-network_interface {
-  network = "default"
-  access_config {
-    nat_ip = google_compute_address.ip_estatica.address
-  }
 }
